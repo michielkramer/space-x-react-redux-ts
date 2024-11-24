@@ -18,6 +18,7 @@ function ListItems(props: ListItemProps): ReactElement {
                             <li className="mission-name">{item.name}</li>
                             <li className="mission-year">{new Date(item.date).getFullYear().toString()}</li>
                             <li className="mission-status">{item.status}</li>
+                            <li className="star"></li>
                         </ul>
                     </li>
                 ))}

@@ -69,6 +69,10 @@ h1, h2, h3, h4, p, ul, li, span, img {
                     width: 220px;
                 }
 
+                &:nth-child(3) {
+                    width: 80px;
+                }
+
                 > img {
                     height: 40px;
                     margin-right: 10px;
@@ -122,4 +126,16 @@ h1, h2, h3, h4, p, ul, li, span, img {
 .mission-search {
     box-sizing: border-box;
     padding: $DEFAULT_PADDING_MARGIN_10;
+}
+
+.star {
+    aspect-ratio: 2;
+    background: #F8CA00;
+    clip-path: polygon(30% 0,
+            calc(30%*(1 + sin(.4turn))) calc(30%*(1 - cos(.4turn))),
+            calc(30%*(1 - sin(.2turn))) calc(30%*(1 - cos(.2turn))),
+            calc(30%*(1 + sin(.2turn))) calc(30%*(1 - cos(.2turn))),
+            calc(30%*(1 - sin(.4turn))) calc(30%*(1 - cos(.4turn)))
+    );
+    min-width: 40px;
 }
