@@ -1,0 +1,63 @@
+$COLOUR_BRAND_PRIMARY: #3498db;
+$DEFAULT_PADDING_MARGIN: 0;
+$DEFAULT_PADDING_MARGIN_20: 20px;
+
+body {
+    font-family: sans-serif;
+    margin: $DEFAULT_PADDING_MARGIN;
+    padding: $DEFAULT_PADDING_MARGIN;
+}
+
+h1, h2, h3, h4, p, ul, li, span, img {
+    margin: $DEFAULT_PADDING_MARGIN;
+    padding: $DEFAULT_PADDING_MARGIN;
+}
+
+.app-header {
+    background-color: $COLOUR_BRAND_PRIMARY;
+    height: 80px;
+    padding: $DEFAULT_PADDING_MARGIN_20;
+    width: 100%;
+}
+
+ul.mission-list {
+    padding: $DEFAULT_PADDING_MARGIN_20;
+    list-style: none;
+
+    > li {
+        border-bottom: 1px solid grey;
+        margin-bottom: $DEFAULT_PADDING_MARGIN_20;
+        padding: $DEFAULT_PADDING_MARGIN_20;
+
+        > img {
+            display: inline-block;
+            height: 40px;
+            margin-right: 10px;
+            vertical-align: middle;
+            width: auto;
+        }
+
+        > span {
+            display: inline-block;
+            margin-top: -5px;
+        }
+    }
+}
+
+.mission-name {
+    font-size: 18px;
+}
+
+.mission-loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid $COLOUR_BRAND_PRIMARY;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

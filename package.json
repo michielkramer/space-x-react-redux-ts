@@ -1,0 +1,33 @@
+{
+  "author": "Michiel Kramer",
+  "dependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "css-loader": "^7.1.2",
+    "dotenv-webpack": "^8.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.2",
+    "path": "^0.12.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.81.0",
+    "sass-loader": "^16.0.3",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.96.1",
+    "webpack-dev-server": "^5.1.0"
+  },
+  "description": "AH Space X Test",
+  "devDependencies": {
+    "@types/node": "^22.9.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.3",
+    "webpack-cli": "^5.1.4"
+  },
+  "name": "ah-space-x-react-ts",
+  "main": "index.ts",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack serve"
+  },
+  "version": "1.0.0"
+}
