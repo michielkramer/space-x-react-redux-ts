@@ -9,8 +9,7 @@ function List(items: ListItem[]): JSX.Element {
     const [inputMissionName, setInputMissionName] = useState<string>('');
 
     function handleTextInput(event: FormEvent<HTMLInputElement>): void {
-        const newValue = event.currentTarget?.value?.replace(/[^0-9a-z]/gi, '');
-        setInputMissionName(newValue);
+        setInputMissionName(event.currentTarget?.value?.replace(/[^0-9a-z]/gi, ''));
     }
 
     return (
