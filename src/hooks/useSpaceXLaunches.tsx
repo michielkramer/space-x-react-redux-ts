@@ -18,11 +18,11 @@ function useSpaceXLaunches() {
                 const launches: ListItem[] = JSON.parse(jsonData);
                 launches.map((launch: SpaceXLaunch) => {
                     const item: ListItem = {
+                        date: launch.date_utc,
                         id: launch.id,
                         name: launch.name,
-                        url: launch.links.patch.small,
-                        date: launch.date_utc,
-                        status: launch.success
+                        status: launch.success,
+                        url: launch.links.patch.small
                     };
                     setLaunches((prev: ListItem[]) => [...prev, item]);
                 });

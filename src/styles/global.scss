@@ -3,21 +3,16 @@ $DEFAULT_PADDING_MARGIN: 0;
 $DEFAULT_PADDING_MARGIN_10: 10px;
 $DEFAULT_PADDING_MARGIN_20: 20px;
 
-body {
+.app-container {
     box-sizing: border-box;
-    font-family: sans-serif;
-    margin: $DEFAULT_PADDING_MARGIN;
-    padding: $DEFAULT_PADDING_MARGIN;
-}
-
-h1, h2, h3, h4, p, ul, li, span, img {
-    margin: $DEFAULT_PADDING_MARGIN;
-    padding: $DEFAULT_PADDING_MARGIN;
+    display: block;
+    margin: 0 auto;
+    width: 90%;
 }
 
 .app-header {
-    box-sizing: border-box;
     background-color: $COLOUR_BRAND_PRIMARY;
+    box-sizing: border-box;
     height: 40px;
     padding: $DEFAULT_PADDING_MARGIN_10;
     width: 100%;
@@ -28,9 +23,30 @@ h1, h2, h3, h4, p, ul, li, span, img {
     }
 }
 
-ul.mission-list {
+body {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    margin: $DEFAULT_PADDING_MARGIN;
+    padding: $DEFAULT_PADDING_MARGIN;
+}
+
+button,
+input[button] {
+    background: transparent none;
+    border: none;
+    cursor: pointer;
+    outline: none;
     padding: $DEFAULT_PADDING_MARGIN_10;
+}
+
+h1, h2, h3, h4, p, ul, li, span, img {
+    margin: $DEFAULT_PADDING_MARGIN;
+    padding: $DEFAULT_PADDING_MARGIN;
+}
+
+.mission-list {
     list-style: none;
+    padding: $DEFAULT_PADDING_MARGIN_10;
 
     > li {
         border-bottom: 1px solid grey;
@@ -64,13 +80,27 @@ ul.mission-list {
     }
 }
 
-.mission-name {
-    font-size: 18px;
+.mission-list-toolbar {
+    box-sizing: border-box;
+    display: grid;
+    height: auto;
+    padding: $DEFAULT_PADDING_MARGIN_10;
+    width: 100%;
+}
+
+.mission-loader {
+    animation: spin 2s linear infinite;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    box-sizing: border-box;
+    height: 120px;
+    margin: 0 auto;
+    width: 120px;
 }
 
 .mission-loader-container {
-    box-sizing: border-box;
     background-color: white;
+    box-sizing: border-box;
     display: block;
     height: 100%;
     padding-top: 120px;
@@ -80,14 +110,8 @@ ul.mission-list {
     width: 100%;
 }
 
-.mission-loader {
-    box-sizing: border-box;
-    animation: spin 2s linear infinite;
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    height: 120px;
-    margin: 0 auto;
-    width: 120px;
+.mission-name {
+    font-size: 18px;
 }
 
 @keyframes spin {
@@ -98,12 +122,4 @@ ul.mission-list {
 .mission-search {
     box-sizing: border-box;
     padding: $DEFAULT_PADDING_MARGIN_10;
-}
-
-.mission-list-toolbar {
-    box-sizing: border-box;
-    display: flex;
-    height: auto;
-    padding: $DEFAULT_PADDING_MARGIN_10;
-    width: 100%;
 }

@@ -14,7 +14,7 @@ function List(items: ListItem[]): ReactElement {
     }
 
     return (
-        <>
+        <div className="app-container">
             <ListToolBar
                 onChange={handleTextInput}
                 value={inputMissionName}
@@ -23,7 +23,7 @@ function List(items: ListItem[]): ReactElement {
                 items={items}
                 searchTerm={inputMissionName}
             />
-        </>
+        </div>
     );
 }
 

@@ -8,6 +8,7 @@ import Header from '../components/Header';
 function SpaceXLaunches(): ReactElement {
     const spaceXLaunches = useSpaceXLaunches();
     const context = useContext(AppContext);
+
     return (
         <>
             <Header />

@@ -9,7 +9,7 @@ function App() {
         <AppContext.Provider value={[context, setContext]}>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<SpaceXLaunches />} />
+                    <Route element={<SpaceXLaunches />} path="/" />
                 </Routes>
             </BrowserRouter>
         </AppContext.Provider>
