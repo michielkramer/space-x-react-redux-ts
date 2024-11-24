@@ -7,4 +7,5 @@ export type SpaceXLaunch = {
         };
     }
     name: string;
+    success: boolean;
 }

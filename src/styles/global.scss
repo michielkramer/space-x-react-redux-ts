@@ -1,0 +1,109 @@
+$COLOUR_BRAND_PRIMARY: #3498db;
+$DEFAULT_PADDING_MARGIN: 0;
+$DEFAULT_PADDING_MARGIN_10: 10px;
+$DEFAULT_PADDING_MARGIN_20: 20px;
+
+body {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    margin: $DEFAULT_PADDING_MARGIN;
+    padding: $DEFAULT_PADDING_MARGIN;
+}
+
+h1, h2, h3, h4, p, ul, li, span, img {
+    margin: $DEFAULT_PADDING_MARGIN;
+    padding: $DEFAULT_PADDING_MARGIN;
+}
+
+.app-header {
+    box-sizing: border-box;
+    background-color: $COLOUR_BRAND_PRIMARY;
+    height: 40px;
+    padding: $DEFAULT_PADDING_MARGIN_10;
+    width: 100%;
+
+    > h1 {
+        color: white;
+        font-size: 20px;
+    }
+}
+
+ul.mission-list {
+    padding: $DEFAULT_PADDING_MARGIN_10;
+    list-style: none;
+
+    > li {
+        border-bottom: 1px solid grey;
+        margin-bottom: $DEFAULT_PADDING_MARGIN_10;
+        padding: $DEFAULT_PADDING_MARGIN_10;
+
+        > ul {
+            display: table;
+            list-style: none;
+
+            > li {
+                display: table-cell;
+                padding-left: $DEFAULT_PADDING_MARGIN_10;
+
+                &:first-child {
+                    width: 40px;
+                }
+
+                &:nth-child(2) {
+                    width: 220px;
+                }
+
+                > img {
+                    height: 40px;
+                    margin-right: 10px;
+                    vertical-align: middle;
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+.mission-name {
+    font-size: 18px;
+}
+
+.mission-loader-container {
+    box-sizing: border-box;
+    background-color: white;
+    display: block;
+    height: 100%;
+    padding-top: 120px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+.mission-loader {
+    box-sizing: border-box;
+    animation: spin 2s linear infinite;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    height: 120px;
+    margin: 0 auto;
+    width: 120px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.mission-search {
+    box-sizing: border-box;
+    padding: $DEFAULT_PADDING_MARGIN_10;
+}
+
+.mission-list-toolbar {
+    box-sizing: border-box;
+    display: flex;
+    height: auto;
+    padding: $DEFAULT_PADDING_MARGIN_10;
+    width: 100%;
+}

@@ -1,22 +1,23 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: './index.tsx',
+  entry: './src/index.tsx',
   devServer: {
     static: path.join(__dirname, 'dist'),
     compress: true,
     port: 4000,
   },
-  mode: 'development',
+  mode: 'production',
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
+        exclude:path.resolve(__dirname, 'node_modules')
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -26,20 +27,30 @@ module.exports = {
             loader: 'css-loader'
           },
           'sass-loader',
-        ]
+        ],
+        exclude:path.resolve(__dirname, 'node_modules')
       }
+    ]
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({parallel: true})
     ]
   },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  performance: {
+    maxEntrypointSize: 2048000,
+    maxAssetSize: 2048000
+  },
   plugins: [
     new HtmlWebpackPlugin({
         title: 'AH Space X', 
-        template: 'templates/index.html' }),
+        template: 'src/templates/index.html' }),
         new Dotenv({
-          path: path.resolve(__dirname, '.env.development')
+          path: path.resolve(__dirname, '.env')
         }),
         new MiniCssExtractPlugin()
    ],

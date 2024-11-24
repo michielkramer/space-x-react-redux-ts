@@ -1,14 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Home from './containers/Home';
-import Header from './components/Header';
+import React, {useState} from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router';
 import AppContext from './context';
+import SpaceXLaunches from './containers/SpaceXLaunches';
 
 function App() {
     const [context, setContext] = useState({ isLoading: true });
     return (
         <AppContext.Provider value={[context, setContext]}>
-            <Header />
-            <Home />
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<SpaceXLaunches />} />
+                </Routes>
+            </BrowserRouter>
         </AppContext.Provider>
     );
 }

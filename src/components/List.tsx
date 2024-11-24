@@ -1,11 +1,12 @@
-import React, { FormEvent, ReactNode, useState } from 'react';
-import TextInput from './Input';
+import React, {FormEvent, ReactElement, useState} from 'react';
+import ListItems from './ListItems';
+import ListToolBar from './ListToolBar';
 
 export type ListItem = {
     [key: string]: any;
 };
 
-function List(items: ListItem[]): JSX.Element {
+function List(items: ListItem[]): ReactElement {
     const [inputMissionName, setInputMissionName] = useState<string>('');
 
     function handleTextInput(event: FormEvent<HTMLInputElement>): void {
@@ -14,20 +15,14 @@ function List(items: ListItem[]): JSX.Element {
 
     return (
         <>
-        <TextInput onChange={handleTextInput} value={inputMissionName} />
-        <ul className='mission-list'>
-            {Object.entries(items)
-                .filter(([key, item]) => item.name.toLowerCase().startsWith(inputMissionName?.toLocaleLowerCase()))
-                .map(([key, item]) => (
-                    <li className="mission-list-item" key={key}>
-                        <img src={item.url} />
-                        <span>
-                            <p className="mission-name">{item.name}</p>
-                            <p className="mission-year">{new Date(item.date).getFullYear().toString()}</p>
-                        </span>
-                    </li>
-            ))}
-        </ul>
+            <ListToolBar
+                onChange={handleTextInput}
+                value={inputMissionName}
+            />
+            <ListItems
+                items={items}
+                searchTerm={inputMissionName}
+            />
         </>
     );
 }

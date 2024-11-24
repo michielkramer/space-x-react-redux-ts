@@ -1,4 +1,4 @@
-const config = {
+const appConfig = {
     spaceX: {
         domain: process.env.SPACE_X_DATA_DOMAIN,
         services: {
@@ -8,4 +8,4 @@ const config = {
     }
 };
 
-export default config;
+export default appConfig;
