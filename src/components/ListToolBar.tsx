@@ -11,10 +11,21 @@ function ListToolBar(props: ListToolBarProps): ReactElement {
     return (
         <div className="mission-list-toolbar">
                 <span className="list-toggle">
-                    <button>All missions</button>
-                    <button>Favourites</button>
+                    <button
+                        aria-label="Show all missions"
+                        tabIndex={0}
+                    >
+                        All missions
+                    </button>
+                    <button
+                        aria-label="Show favourite missions"
+                        tabIndex={1}
+                    >
+                        Favourites
+                    </button>
                 </span>
             <TextInput
+                aria-only="Search"
                 className="mission-search"
                 onChange={props.onChange}
                 placeholder={props.placeholder || 'Search...'}

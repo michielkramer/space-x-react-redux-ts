@@ -12,6 +12,7 @@ function TextInput(props: TextInputProps): ReactElement {
         className={props.className}
         onChange={e => props.onChange(e)}
         placeholder={props.placeholder || 'Search...'}
+        tabIndex={2}
         type="text"
         value={props.value}
     />;
