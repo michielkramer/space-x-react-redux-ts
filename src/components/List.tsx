@@ -1,4 +1,4 @@
-import React, {FormEvent, ReactElement, useState} from 'react';
+import React, { FormEvent, ReactElement, useState } from 'react';
 import ListItems from './ListItems';
 import ListToolBar from './ListToolBar';
 
@@ -6,7 +6,7 @@ export type ListItem = {
     [key: string]: any;
 };
 
-function List(items: ListItem[]): ReactElement {
+function List(): ReactElement {
     const [inputMissionName, setInputMissionName] = useState<string>('');
 
     function handleTextInput(event: FormEvent<HTMLInputElement>): void {
@@ -19,10 +19,7 @@ function List(items: ListItem[]): ReactElement {
                 onChange={handleTextInput}
                 value={inputMissionName}
             />
-            <ListItems
-                items={items}
-                searchTerm={inputMissionName}
-            />
+            <ListItems searchTerm={inputMissionName} />
         </div>
     );
 }

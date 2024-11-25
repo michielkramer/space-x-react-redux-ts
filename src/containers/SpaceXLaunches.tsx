@@ -14,7 +14,7 @@ function SpaceXLaunches(): ReactElement {
             <Header />
             {context.isLoading === true
                 ? <Loader />
-                : <List {...context.missions} />}
+                : <List />}
         </>
     );
 }
