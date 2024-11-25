@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import appConfig from '../../appConfig';
 import { ListItem } from '../components/List';
-import AppContext from '../context';
+import AppContext, { AppContextType } from '../context';
 
 function useSpaceXLaunches() {
     const [missions, setMissions] = useState<ListItem[]>([]);
@@ -33,7 +33,7 @@ function useSpaceXLaunches() {
         getLaunches();
     }, []);
 
-    setContext({ missions });
+    setContext((prev: AppContextType) => ({ ...prev, missions }));
 }
 
 export default useSpaceXLaunches;
