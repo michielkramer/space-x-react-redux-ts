@@ -16,7 +16,7 @@ function useSpaceXLaunches() {
                 const item: ListItem = {
                     id: chunk.id,
                     isFav: false,
-                    date: chunk.date_utc,
+                    date: new Date(chunk.date_utc).getFullYear().toString(),
                     name: chunk.name,
                     status: chunk.success,
                     url: chunk.links.patch.small
