@@ -6,15 +6,15 @@ import Loader from '../components/Loader';
 import Header from '../components/Header';
 
 function SpaceXLaunches(): ReactElement {
-    const spaceXLaunches = useSpaceXLaunches();
-    const context = useContext(AppContext);
+    useSpaceXLaunches();
+    const [context,] = useContext(AppContext);
 
     return (
         <>
             <Header />
             {context.isLoading === true
                 ? <Loader />
-                : <List {...spaceXLaunches} />}
+                : <List {...context.missions} />}
         </>
     );
 }

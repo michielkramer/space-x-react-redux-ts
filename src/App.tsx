@@ -4,7 +4,7 @@ import AppContext from './context';
 import SpaceXLaunches from './containers/SpaceXLaunches';
 
 function App() {
-    const [context, setContext] = useState({ isLoading: true });
+    const [context, setContext] = useState({ isLoading: true, missions: [] });
     return (
         <AppContext.Provider value={[context, setContext]}>
             <BrowserRouter>

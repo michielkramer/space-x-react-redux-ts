@@ -1,32 +1,27 @@
 import { useState, useEffect, useContext } from 'react';
 import appConfig from '../../appConfig';
-import { SpaceXLaunch } from '../model/SpaceX';
 import { ListItem } from '../components/List';
 import AppContext from '../context';
 
 function useSpaceXLaunches() {
-    const [launches, setLaunches] = useState<ListItem[]>([]);
+    const [missions, setMissions] = useState<ListItem[]>([]);
     const [, setContext] = useContext(AppContext);
-
     const url = `https://${appConfig.spaceX.domain}/${appConfig.spaceX.services.version}/${appConfig.spaceX.services.launches}`;
 
     async function getLaunches(): Promise<ReadableStream | null> {
         try {
             const stream: Response = await fetch(url);
-            const jsonData: string = await stream.text();
-            if (jsonData) {
-                const launches: ListItem[] = JSON.parse(jsonData);
-                launches.map((launch: SpaceXLaunch) => {
-                    const item: ListItem = {
-                        date: launch.date_utc,
-                        id: launch.id,
-                        name: launch.name,
-                        status: launch.success,
-                        url: launch.links.patch.small
-                    };
-                    setLaunches((prev: ListItem[]) => [...prev, item]);
-                });
-                setContext({ isLoading: false });
+            const streamData = await stream.json();
+            for await (const chunk of streamData) {
+                const item: ListItem = {
+                    id: chunk.id,
+                    isFav: false,
+                    date: chunk.date_utc,
+                    name: chunk.name,
+                    status: chunk.success,
+                    url: chunk.links.patch.small
+                };
+                setMissions((prevMissions: ListItem[]) => [...prevMissions, item]);
             }
         } catch (error: Error | unknown) {
             console.log({message: 'Error retrieving SpaceX Data', error });
@@ -38,7 +33,7 @@ function useSpaceXLaunches() {
         getLaunches();
     }, []);
 
-    return launches;
+    setContext({ missions });
 }
 
 export default useSpaceXLaunches;
