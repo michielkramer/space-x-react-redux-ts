@@ -5,8 +5,8 @@ import AppContext, { AppContextType } from './context';
 
 function App() {
     const defaultAppValues: AppContextType = {
+        init: true,
         isLoading: false,
-        isShowingFavourites: false,
         missions: []
     };
     const [context, setContext] = useState(defaultAppValues);

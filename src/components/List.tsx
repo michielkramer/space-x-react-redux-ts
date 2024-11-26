@@ -9,24 +9,30 @@ export type ListItem = {
 
 function List(): ReactElement {
     const [inputMissionName, setInputMissionName] = useState<string>('');
+    const [favourites, setFavourites] = useState<string[]>([]);
+    const [showFavourites, setShowFavourites] = useState<boolean>(false);
     const [context,] = useContext(AppContext);
 
-    function handleTextInput(event: FormEvent<HTMLInputElement>): void {
+    function handleSearch(event: FormEvent<HTMLInputElement>): void {
         setInputMissionName(event.currentTarget?.value?.replace(/[^0-9a-z]/gi, ''));
     }
 
     return (
         <div className="app-container">
             <ListToolBar
-                onChange={handleTextInput}
+                handleSearch={handleSearch}
                 role="toolbar"
+                setShowFavourites={setShowFavourites}
                 value={inputMissionName}
             />
             <ListItems
+                favourites={favourites}
                 items={context.missions}
-                role={context.isShowingFavourites === true ? 'List favourites missions' : 'List of missions'}
+                role={showFavourites === true ? 'List favourites missions' : 'List of missions'}
                 searchTerm={inputMissionName}
-                title={context.isShowingFavourites === true ? 'Favourites' : 'All missions'}
+                setFavourites={setFavourites}
+                showFavourites={showFavourites}
+                title={showFavourites === true ? 'Favourites' : 'All missions'}
             />
         </div>
     );

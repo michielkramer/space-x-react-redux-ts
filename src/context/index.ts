@@ -2,8 +2,8 @@ import { createContext } from 'react';
 import { ListItem } from '../components/List';
 
 export type AppContextType = {
+    init: boolean;
     isLoading: boolean;
-    isShowingFavourites: boolean;
     missions: ListItem[];
 };
 

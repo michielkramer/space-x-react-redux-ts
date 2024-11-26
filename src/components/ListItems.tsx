@@ -1,4 +1,4 @@
-import React, { ReactElement, SyntheticEvent } from 'react';
+import React, { Dispatch, ReactElement, SetStateAction } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library, findIconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { ListItem } from './List';
@@ -7,18 +7,29 @@ import { fas, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 library.add(fas);
 
 type ListItemProps = {
+    favourites: string[];
     items: ListItem[];
     role: string;
     searchTerm: string;
+    setFavourites: Dispatch<SetStateAction<string[]>>;
+    showFavourites: boolean;
     title: string;
 };
 
 function ListItems(props: ListItemProps): ReactElement {
     const starIconSolid: IconDefinition = findIconDefinition({ prefix: 'fas', iconName: 'star' });
 
-    function handleClick(event: SyntheticEvent): void {
-        event.preventDefault();
-        console.log('CLICKED');
+    function filterList() {
+        if (props.showFavourites) {
+            return props.items.filter((item: ListItem) => props.favourites.includes(item.id));
+        }
+        return props.items;
+    }
+
+    function handleClick(item: ListItem): void {
+        if (!props.favourites.includes(item.id)) {
+            props.setFavourites((prev: string[]) => [...prev, item.id]);
+        }
     }
 
     return (
@@ -28,7 +39,7 @@ function ListItems(props: ListItemProps): ReactElement {
                 aria-label="The list of all missions"
                 className="mission-list"
             >
-                {props.items
+                {filterList()
                     .filter((item: ListItem) => item.name.toLowerCase().startsWith(props.searchTerm?.toLocaleLowerCase()))
                     .map((item: ListItem) => (
                         <li
@@ -59,18 +70,18 @@ function ListItems(props: ListItemProps): ReactElement {
                                     {item.status}
                                 </li>
                                 <li>
-                                    {item.isFav
+                                    {item.isFav === true
                                         ? (
                                             <span
                                                 className="fav-icon"
-                                                onClick={(event) => handleClick(event)}
+                                                onClick={() => handleClick(item)}
                                             >
                                         <FontAwesomeIcon icon={starIconSolid}/>
                                     </span>
                                         ) : (
                                             <span
                                                 className="add-fav"
-                                                onClick={(event) => handleClick(event)}
+                                                onClick={() => handleClick(item)}
                                             >
                                         Add to favourites
                                     </span>

@@ -1,10 +1,11 @@
-import React, {FormEvent, ReactElement} from 'react';
+import React, { Dispatch, FormEvent, ReactElement, SetStateAction } from 'react';
 import TextInput from './Input';
 
 type ListToolBarProps = {
-    onChange: (event: FormEvent<HTMLInputElement>) => void;
+    handleSearch: (event: FormEvent<HTMLInputElement>) => void;
     placeholder?: string;
     role: string;
+    setShowFavourites: Dispatch<SetStateAction<boolean>>;
     value: string;
 };
 
@@ -17,14 +18,14 @@ function ListToolBar(props: ListToolBarProps): ReactElement {
                 <span className="list-toggle">
                     <button
                         aria-label="Show favourite missions"
-                        onClick={() => {}}
+                        onClick={() => props.setShowFavourites(true)}
                         tabIndex={0}
                     >
                         Favourites
                     </button>
                     <button
                         aria-label="Show all missions"
-                        onClick={() => {}}
+                        onClick={() => props.setShowFavourites(false)}
                         tabIndex={1}
                     >
                         All missions
@@ -32,7 +33,7 @@ function ListToolBar(props: ListToolBarProps): ReactElement {
                 </span>
             <TextInput
                 className="mission-search"
-                onChange={props.onChange}
+                onChange={props.handleSearch}
                 placeholder={props.placeholder || 'Search...'}
                 role="search"
                 value={props.value}
