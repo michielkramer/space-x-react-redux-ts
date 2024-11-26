@@ -2,8 +2,13 @@ import React, { ReactElement } from 'react';
 
 function Loader(): ReactElement {
     return (
-        <div className="mission-loader-container">
-            <div className="mission-loader"></div>
+        <div
+            aria-busy="true"
+            aria-valuetext="Loading..."
+            className="mission-loader-container"
+            role="progressbar"
+        >
+            <div aria-hidden="true" className="mission-loader"></div>
         </div>
     );
 }

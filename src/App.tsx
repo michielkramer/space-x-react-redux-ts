@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import SpaceXLaunches from './containers/SpaceXLaunches';
-import AppContext, {AppContextType} from './context';
+import AppContext, { AppContextType } from './context';
 
 function App() {
     const defaultAppValues: AppContextType = {
         isLoading: false,
-        missions: [],
-        isShowingFavourites: false
+        isShowingFavourites: false,
+        missions: []
     };
     const [context, setContext] = useState(defaultAppValues);
 

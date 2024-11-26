@@ -4,31 +4,37 @@ import TextInput from './Input';
 type ListToolBarProps = {
     onChange: (event: FormEvent<HTMLInputElement>) => void;
     placeholder?: string;
+    role: string;
     value: string;
 };
 
 function ListToolBar(props: ListToolBarProps): ReactElement {
     return (
-        <div className="mission-list-toolbar">
+        <div
+            aria-level={2}
+            className="mission-list-toolbar"
+        >
                 <span className="list-toggle">
                     <button
-                        aria-label="Show all missions"
-                        tabIndex={0}
-                    >
-                        All missions
-                    </button>
-                    <button
                         aria-label="Show favourite missions"
-                        tabIndex={1}
+                        onClick={() => {}}
+                        tabIndex={0}
                     >
                         Favourites
                     </button>
+                    <button
+                        aria-label="Show all missions"
+                        onClick={() => {}}
+                        tabIndex={1}
+                    >
+                        All missions
+                    </button>
                 </span>
             <TextInput
-                aria-only="Search"
                 className="mission-search"
                 onChange={props.onChange}
                 placeholder={props.placeholder || 'Search...'}
+                role="search"
                 value={props.value}
             />
         </div>

@@ -3,8 +3,8 @@ import { ListItem } from '../components/List';
 
 export type AppContextType = {
     isLoading: boolean;
-    missions: ListItem[];
     isShowingFavourites: boolean;
+    missions: ListItem[];
 };
 
 const AppContext = createContext(null);

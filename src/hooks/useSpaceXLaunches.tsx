@@ -1,11 +1,9 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import appConfig from '../../appConfig';
 import { ListItem } from '../components/List';
-import AppContext, { AppContextType } from '../context';
 
-function useSpaceXLaunches() {
+async function useSpaceXLaunches(): Promise<ListItem[] | null> {
     const [missions, setMissions] = useState<ListItem[]>([]);
-    const [, setContext] = useContext(AppContext);
     const url = `https://${appConfig.spaceX.domain}/${appConfig.spaceX.services.version}/${appConfig.spaceX.services.launches}`;
 
     async function getLaunches(): Promise<ReadableStream | null> {
@@ -33,7 +31,7 @@ function useSpaceXLaunches() {
         getLaunches();
     }, []);
 
-    setContext((prev: AppContextType) => ({ ...prev, missions }));
+    return missions;
 }
 
 export default useSpaceXLaunches;

@@ -5,12 +5,13 @@ const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: './src/index.tsx',
   devServer: {
-    static: path.join(__dirname, 'dist'),
     compress: true,
     port: 4000,
+    static: path.join(__dirname, 'dist')
   },
+  devtool: 'inline-source-map',
+  entry: './src/index.tsx',
   mode: 'production',
   module: {
     rules: [
@@ -42,12 +43,13 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   performance: {
-    maxEntrypointSize: 2048000,
-    maxAssetSize: 2048000
+    maxEntrypointSize: 2048000 * 10,
+    maxAssetSize: 2048000 * 10
   },
   plugins: [
     new HtmlWebpackPlugin({
-        title: 'AH Space X', 
+      favicon: false,
+      title: 'AH Space X',
         template: 'src/templates/index.html' }),
         new Dotenv({
           path: path.resolve(__dirname, '.env')
@@ -56,6 +58,5 @@ module.exports = {
    ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-  },
-  devtool: 'inline-source-map'
+  }
 };
