@@ -1,24 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import SpaceXLaunches from './containers/SpaceXLaunches';
-import AppContext, { AppContextType } from './context';
 
 function App() {
-    const defaultAppValues: AppContextType = {
-        init: true,
-        isLoading: false,
-        missions: []
-    };
-    const [context, setContext] = useState(defaultAppValues);
-
     return (
-        <AppContext.Provider value={[context, setContext]}>
-            <BrowserRouter>
-                <Routes>s
-                    <Route element={<SpaceXLaunches />} path="/" />
-                </Routes>
-            </BrowserRouter>
-        </AppContext.Provider>
+        <BrowserRouter>
+            <Routes>s
+                <Route element={<SpaceXLaunches />} path="/" />
+            </Routes>
+        </BrowserRouter>
     );
 }
 

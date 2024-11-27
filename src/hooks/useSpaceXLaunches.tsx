@@ -12,11 +12,11 @@ async function useSpaceXLaunches(): Promise<ListItem[] | null> {
             const streamData = await stream.json();
             for await (const chunk of streamData) {
                 const item: ListItem = {
-                    id: chunk.id,
+                    id: chunk.id ?? '_id',
                     isFav: false,
                     date: new Date(chunk.date_utc).getFullYear().toString(),
-                    name: chunk.name,
-                    status: chunk.success,
+                    name: chunk.name ?? '_name',
+                    status: chunk.success ?? false,
                     url: chunk.links.patch.small
                 };
                 setMissions((prevMissions: ListItem[]) => [...prevMissions, item]);

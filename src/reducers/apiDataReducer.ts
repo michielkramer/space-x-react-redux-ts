@@ -19,13 +19,9 @@ function apiDataReducer(state: apiDataState = initialState, action: AnyAction): 
             };
         }
         case actionTypes.APP.UPDATE_API_DATA: {
-            const index = state.spaceXLaunches.findIndex((i) => i.id === action.payload);
-            state.spaceXLaunches[index].isFav = true;
             return {
                 ...state,
-                spaceXLaunches: [
-                    ...state.spaceXLaunches
-                ]
+                spaceXLaunches: action.payload
             };
         }
         default:

@@ -8,7 +8,6 @@ export type ListItem = {
 
 function List(): ReactElement {
     const [inputMissionName, setInputMissionName] = useState<string>('');
-    const [favourites, setFavourites] = useState<string[]>([]);
     const [showFavourites, setShowFavourites] = useState<boolean>(false);
 
     function handleSearch(event: FormEvent<HTMLInputElement>): void {
@@ -24,10 +23,8 @@ function List(): ReactElement {
                 value={inputMissionName}
             />
             <ListItems
-                favourites={favourites}
                 role={showFavourites === true ? 'List favourites missions' : 'List of missions'}
                 searchTerm={inputMissionName}
-                setFavourites={setFavourites}
                 showFavourites={showFavourites}
                 title={showFavourites === true ? 'Favourites' : 'All missions'}
             />
