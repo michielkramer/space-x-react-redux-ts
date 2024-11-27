@@ -1,23 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import List from '../components/List';
-import AppContext, { AppContextType } from '../context';
-import Loader from '../components/Loader';
 import Header from '../components/Header';
 import useSpaceXLaunches from '../hooks/useSpaceXLaunches';
+import { useAppDispatch } from '../utils/redux';
+import { getApiData } from '../actions/apiDataActions';
 
 function SpaceXLaunches() {
-    const [context, setContext] = useContext(AppContext);
-
-    useSpaceXLaunches().then((result) => {
-        setContext((prev: AppContextType) => ({ ...prev, init: false, missions: result }));
-    });
+    const dispatch = useAppDispatch();
+    useSpaceXLaunches().then((result) => dispatch(getApiData(result)));
 
     return (
         <>
             <Header />
-            {context.isLoading === true
-                ? <Loader />
-                : <List />}
+            <List />
         </>
     );
 }

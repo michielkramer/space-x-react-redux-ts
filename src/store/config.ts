@@ -12,7 +12,7 @@ function configureStore(): {
         key: 'ah-space-x-react-ts',
         storage,
         whiteList: [
-            'apiData'
+            'appData'
         ]
     };
 

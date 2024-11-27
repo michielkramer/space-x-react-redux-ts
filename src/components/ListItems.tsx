@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library, findIconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { ListItem } from './List';
 import { fas, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import {useAppDispatch, useAppSelector} from '../utils/redux';
+import {updateApiData} from '../actions/apiDataActions';
 
 library.add(fas);
 
 type ListItemProps = {
     favourites: string[];
-    items: ListItem[];
     role: string;
     searchTerm: string;
     setFavourites: Dispatch<SetStateAction<string[]>>;
@@ -18,17 +19,20 @@ type ListItemProps = {
 
 function ListItems(props: ListItemProps): ReactElement {
     const starIconSolid: IconDefinition = findIconDefinition({ prefix: 'fas', iconName: 'star' });
+    const { spaceXLaunches } = useAppSelector(state => state.apiData);
+    const dispatch = useAppDispatch();
 
-    function filterList() {
+    function filterList(): ListItem[] {
         if (props.showFavourites) {
-            return props.items.filter((item: ListItem) => props.favourites.includes(item.id));
+            return spaceXLaunches?.filter((item: ListItem) => props.favourites.includes(item.id));
         }
-        return props.items;
+        return spaceXLaunches;
     }
 
     function handleClick(item: ListItem): void {
         if (!props.favourites.includes(item.id)) {
             props.setFavourites((prev: string[]) => [...prev, item.id]);
+            dispatch(updateApiData(item.id));
         }
     }
 

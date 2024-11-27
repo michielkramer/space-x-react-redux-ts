@@ -18,6 +18,16 @@ function apiDataReducer(state: apiDataState = initialState, action: AnyAction): 
                 spaceXLaunches: action.payload
             };
         }
+        case actionTypes.APP.UPDATE_API_DATA: {
+            const index = state.spaceXLaunches.findIndex((i) => i.id === action.payload);
+            state.spaceXLaunches[index].isFav = true;
+            return {
+                ...state,
+                spaceXLaunches: [
+                    ...state.spaceXLaunches
+                ]
+            };
+        }
         default:
             return initialState;
     }
