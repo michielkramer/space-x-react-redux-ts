@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { Dispatch, ReactElement, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library, findIconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { ListItem } from './List';
@@ -6,6 +6,7 @@ import { fas, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { useAppDispatch, useAppSelector } from '../utils/redux';
 import { updateApiData } from '../actions/apiDataActions';
 import {setFavourites} from '../actions/appActions';
+import { AnyAction } from 'redux';
 
 library.add(fas);
 
@@ -18,9 +19,19 @@ type ListItemProps = {
 
 function ListItems(props: ListItemProps): ReactElement {
     const starIconSolid: IconDefinition = findIconDefinition({ prefix: 'fas', iconName: 'star' });
-    const { spaceXLaunches } = useAppSelector(state => state.apiData);
-    const favourites = useAppSelector(state => state.appData.favourites);
-    const dispatch = useAppDispatch();
+    const spaceXLaunches: ListItem[] = useAppSelector(state => state.apiData.spaceXLaunches);
+    const favourites: string[] = useAppSelector(state => state.appData.favourites);
+    const dispatch: Dispatch<AnyAction> = useAppDispatch();
+
+    const [selected, setSelected] = useState<ListItem | null>(null);
+
+    useEffect(() => {
+        if (selected !== null) {
+            const update = updateFavourites(selected);
+            dispatch(updateApiData(update));
+            setSelected(null);
+        }
+    }, [selected, favourites, spaceXLaunches]);
 
     function filterList(): ListItem[] {
         if (props.showFavourites) {
@@ -39,8 +50,7 @@ function ListItems(props: ListItemProps): ReactElement {
     function handleClick(item: ListItem): void {
         if (!favourites?.includes(item.id)) {
             dispatch(setFavourites([...favourites, item.id]));
-            const updated = updateFavourites(item);
-            dispatch(updateApiData(updated));
+            setSelected(item);
         }
     }
 
