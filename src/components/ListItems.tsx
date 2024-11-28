@@ -19,7 +19,7 @@ type ListItemProps = {
 function ListItems(props: ListItemProps): ReactElement {
     const starIconSolid: IconDefinition = findIconDefinition({ prefix: 'fas', iconName: 'star' });
     const { spaceXLaunches } = useAppSelector(state => state.apiData);
-    const { favourites } = useAppSelector(state => state.appData);
+    const favourites = useAppSelector(state => state.appData.favourites);
     const dispatch = useAppDispatch();
 
     function filterList(): ListItem[] {
@@ -38,8 +38,9 @@ function ListItems(props: ListItemProps): ReactElement {
 
     function handleClick(item: ListItem): void {
         if (!favourites?.includes(item.id)) {
-            dispatch(setFavourites(favourites.push(item.id)));
-            dispatch(updateApiData(updateFavourites(item)));
+            dispatch(setFavourites([...favourites, item.id]));
+            const updated = updateFavourites(item);
+            dispatch(updateApiData(updated));
         }
     }
 
@@ -80,24 +81,26 @@ function ListItems(props: ListItemProps): ReactElement {
                                     className="mission-status">
                                     {item.status}
                                 </li>
-                                <li>
-                                    {item.isFav === true
-                                        ? (
-                                            <span
-                                                className="fav-icon"
-                                                onClick={() => handleClick(item)}
-                                            >
+                                {props.showFavourites === false && (
+                                    <li>
+                                        {item.isFav === true
+                                            ? (
+                                                <span
+                                                    className="fav-icon"
+                                                    onClick={() => handleClick(item)}
+                                                >
                                         <FontAwesomeIcon icon={starIconSolid}/>
                                     </span>
-                                        ) : (
-                                            <span
-                                                className="add-fav"
-                                                onClick={() => handleClick(item)}
-                                            >
+                                            ) : (
+                                                <span
+                                                    className="add-fav"
+                                                    onClick={() => handleClick(item)}
+                                                >
                                         Add to favourites
                                     </span>
-                                        )}
-                                </li>
+                                            )}
+                                    </li>
+                                )}
                             </ul>
                         </li>
                     ))}
