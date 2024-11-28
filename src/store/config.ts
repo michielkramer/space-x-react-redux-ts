@@ -1,28 +1,22 @@
 import { createStore } from 'redux';
-import { persistStore, persistReducer, Persistor } from 'redux-persist';
+import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import rootReducer from '../reducers';
 
-function configureStore(): {
-    persistor: Persistor;
-    store: typeof store;
-} {
+function configureStore() {
     const config = {
         key: 'ah-space-x-react-ts',
         storage,
-        whiteList: [
-            'appData'
-        ]
+        whiteList: ['appData']
     };
 
-    const reducer = persistReducer(config, rootReducer);
+    const storeReducer = persistReducer(config, rootReducer);
     const store = createStore(
-        reducer,composeWithDevTools()
+        storeReducer,
+        composeWithDevTools()
     );
-
     const persistor = persistStore(store);
-
     return { persistor, store };
 }
 

@@ -27,7 +27,7 @@ function appReducer(state: appState = initialState, action: AnyAction): appState
             };
         }
         default:
-            return initialState;
+            return state;
     }
 }
 

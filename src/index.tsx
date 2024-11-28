@@ -5,15 +5,14 @@ import './styles/global.scss';
 import { Provider } from 'react-redux';
 import reduxStore from './store';
 import { PersistGate } from 'redux-persist/integration/react';
+import Loader from './components/Loader';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-  <React.StrictMode>
-      <Provider store={reduxStore.store}>
-        <PersistGate loading={null} persistor={reduxStore.persistor}>
-          <App />
+    <Provider store={reduxStore.store}>
+        <PersistGate loading={<Loader />} persistor={reduxStore.persistor}>
+            <App />
         </PersistGate>
-      </Provider>
-  </React.StrictMode>
+    </Provider>
 );
