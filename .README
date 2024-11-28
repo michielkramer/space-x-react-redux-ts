@@ -1,0 +1,12 @@
+## AH SpaceX React TypeScript
+
+Session storage handled via Redux persist
+
+#### Install
+npm i
+
+### Run dev server
+npm run start
+
+
+
