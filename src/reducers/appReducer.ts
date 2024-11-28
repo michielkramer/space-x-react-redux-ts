@@ -12,14 +12,7 @@ const initialState: appState = {
 };
 
 function appReducer(state: appState = initialState, action: AnyAction): appState {
-    console.log('action', action);
     switch(action.type) {
-        case actionTypes.APP.SET_IS_LOADING: {
-            return {
-                ...state,
-                isLoading: action.payload
-            };
-        }
         case actionTypes.APP.SET_FAVOURITES: {
             return {
                 ...state,

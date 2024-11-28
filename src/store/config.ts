@@ -1,13 +1,13 @@
 import { createStore } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import sessionStorage from 'redux-persist/lib/storage/session'
 import { composeWithDevTools } from '@redux-devtools/extension';
 import rootReducer from '../reducers';
 
 function configureStore() {
     const config = {
-        key: 'ah-space-x-react-ts',
-        storage,
+        key: 'spaceX',
+        storage: sessionStorage,
         whiteList: ['appData']
     };
 
