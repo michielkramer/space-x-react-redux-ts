@@ -1,2 +1,6 @@
 node_modules
 dist
+.DS_Store
+.idea
+src/.DS_Store
+scr/hooks/.DS_Store
